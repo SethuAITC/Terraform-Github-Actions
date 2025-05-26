@@ -1,7 +1,5 @@
 provider "aws" {
   region = "us-east-2"
-  access_key = "${{ secrets.TF_USER_AWS_KEY }}"
-  secret_key = "${{ secrets.TF_USER_AWS_SECRET }}"
 }
 
 resource "aws_security_group" "instance_sg" {
