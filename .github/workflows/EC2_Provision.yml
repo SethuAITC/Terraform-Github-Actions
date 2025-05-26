@@ -13,6 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.TF_USER_AWS_KEY }}
+          aws-secret-access-key: ${{ secrets.TF_USER_AWS_SECRET }}
+          aws-region: us-east-1  # Change if using a different region
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -29,6 +36,3 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve -var-file="terraform.tfvars"
         working-directory: terraform
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.TF_USER_AWS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.TF_USER_AWS_SECRET }}
