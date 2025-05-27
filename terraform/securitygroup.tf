@@ -1,7 +1,8 @@
 resource "aws_security_group" "instance_sg" {
-  name        = "instance-sg"
+  name        = "instance-sg-${1}"
   description = "Allow SSH and HTTP"
   vpc_id      = "vpc-02dd22c6a71b9fbd6"
+
 
   lifecycle {
     create_before_destroy = true
